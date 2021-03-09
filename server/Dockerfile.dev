@@ -1,0 +1,18 @@
+FROM node:14.16.0-alpine3.11
+
+ENV NODE_ENV="development"
+
+RUN mkdir /server \
+    && mkdir -p /var/www/html/images
+
+WORKDIR /server
+
+COPY . .
+
+
+RUN npm install
+
+
+EXPOSE 5000
+
+CMD npm start-dev
