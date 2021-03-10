@@ -13,15 +13,15 @@ module.exports.addMessage = async (req, res, next) => {
     (participant1, participant2) => participant1 - participant2);
   try {
     const newConversation = await Conversation.findOneAndUpdate({
-        participants,
-      },
-      { participants, blackList: [false, false], favoriteList: [false, false] },
-      {
-        upsert: true,
-        new: true,
-        setDefaultsOnInsert: true,
-        useFindAndModify: false,
-      });
+      participants,
+    },
+    { participants, blackList: [false, false], favoriteList: [false, false] },
+    {
+      upsert: true,
+      new: true,
+      setDefaultsOnInsert: true,
+      useFindAndModify: false,
+    });
     const message = new Message({
       sender: req.tokenData.userId,
       body: req.body.messageBody,
@@ -41,7 +41,7 @@ module.exports.addMessage = async (req, res, next) => {
       favoriteList: newConversation.favoriteList,
     };
     controller.getChatController().emitNewMessage(interlocutorId, {
-      message: message,
+      message,
       preview: {
         _id: newConversation._id,
         sender: req.tokenData.userId,
@@ -155,7 +155,7 @@ module.exports.getPreview = async (req, res, next) => {
       interlocutors.push(conversation.participants.find(
         (participant) => participant !== req.tokenData.userId));
     });
-    const senders = await db.Users.findAll({
+    const senders = await db.User.findAll({
       where: {
         id: interlocutors,
       },

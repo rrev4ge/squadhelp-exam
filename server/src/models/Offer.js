@@ -1,7 +1,15 @@
-'use strict';
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  const Offer = sequelize.define('Offers', {
+  class Offer extends Model {
+    static associate(models) {
+      Offer.belongsTo(models.User, { foreignKey: 'userId', targetKey: 'id' });
+      Offer.belongsTo(models.Contest, { foreignKey: 'contestId', targetKey: 'id' });
+      Offer.hasOne(models.Rating, { foreignKey: 'offerId', sourceKey: 'id' });
+    }
+  }
+  Offer.init(
+    {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -36,17 +44,11 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
+      sequelize,
       timestamps: false,
-    });
-
-  Offer.associate = function (models) {
-    Offer.belongsTo(models.User, { foreignKey: 'user_id', sourceKey: 'id' });
-  };
-
-  Offer.associate = function (models) {
-    Offer.belongsTo(models.Contest,
-      { foreignKey: 'contest_id', sourceKey: 'id' });
-  };
-
+      modelName: 'Offer',
+      tableName: 'Offers',
+    },
+  );
   return Offer;
 };
