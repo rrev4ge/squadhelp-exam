@@ -1,12 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
-const ServerError = require('../../errors/ServerError');
+const ServerError = require('../errors/ServerError');
+const CONSTANTS = require('../constants');
 const env = process.env.NODE_ENV || 'development';
-const devFilePath = path.resolve(__dirname, '..', '..', '..', 'public/images');
+const devFilePath = path.resolve(__dirname, '..', '..', '..', CONSTANTS.UPLOAD_FILE_DEV_DIR);
 
 const filePath = env === 'production'
-  ? '/var/www/html/images/'
+  ? CONSTANTS.UPLOAD_FILE_PROD_DIR
   : devFilePath;
 
 if (!fs.existsSync(filePath)) {

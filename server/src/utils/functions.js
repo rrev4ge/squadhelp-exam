@@ -3,7 +3,7 @@ const CONSTANTS = require('../../constants');
 
 module.exports.createWhereForAllContests = (
   typeIndex, contestId, industry, awardSort) => {
-  let object = {
+  const object = {
     where: {},
     order: [],
   };
@@ -14,7 +14,7 @@ module.exports.createWhereForAllContests = (
     Object.assign(object.where, { id: contestId });
   }
   if (industry) {
-    Object.assign(object.where, { industry: industry });
+    Object.assign(object.where, { industry });
   }
   if (awardSort) {
     object.order.push(['prize', awardSort]);
@@ -43,5 +43,5 @@ const types = [
   'logo',
   'name,tagline',
   'logo,tagline',
-  'name,logo'
+  'name,logo',
 ];
