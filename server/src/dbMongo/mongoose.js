@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const env = process.env.NODE_ENV || 'development';
 const configPath = path.join(__dirname, '..',
-  'config/mongoConfig.json');
+  '/config/mongoConfig.json');
 const config = require(configPath)[ env ];
 
 mongoose.connect(

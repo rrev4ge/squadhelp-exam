@@ -4,8 +4,7 @@ const Sequelize = require('sequelize');
 
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const configPath = env === 'production' ? path.join(__dirname, '..', '..', '..',
-  'src/server/config/postgresConfig.json') : path.join(__dirname, '..',
+const configPath = path.join(__dirname, '..',
   '/config/postgresConfig.json');
 const config = require(configPath)[ env ];
 const db = {};
@@ -20,7 +19,7 @@ fs
       (file.slice(-3) === '.js');
   })
   .forEach((file) => {
-    const model = sequelize.import(path.join(__dirname, file));
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[ model.name ] = model;
   });
 

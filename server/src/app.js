@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const router = require('./routers');
-const handlerError = require('./handlerError/handler');
+const handlerError = require('./errors/handlerError');
 
 const app = express();
 
