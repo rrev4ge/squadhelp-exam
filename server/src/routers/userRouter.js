@@ -4,7 +4,7 @@ const hashPass = require('../middlewares/hashPassMiddle');
 const checkToken = require('../middlewares/checkToken');
 const userController = require('../controllers/userController');
 const validators = require('../middlewares/validators');
-const upload = require('../utils/fileUpload');
+const upload = require('../utils/fileTransfer');
 const basicMiddlewares = require('../middlewares/basicMiddlewares');
 
 const userRouter = express.Router();

@@ -56,7 +56,7 @@ const DialogList = (props) => {
         const {userId, preview, goToExpandedDialog, chatMode, removeChat, interlocutor} = props;
         preview.forEach((chatPreview, index) => {
             const dialogNode = <DialogBox
-                interlocutor={chatPreview.interlocutor}
+                interlocutor={interlocutor}
                 chatPreview={chatPreview} userId={userId} key={index} getTimeStr={getTimeStr}
                 changeFavorite={changeFavorite} changeBlackList={changeBlackList} chatMode={chatMode}
                 catalogOperation={chatMode === CONSTANTS.CATALOG_PREVIEW_CHAT_MODE ? removeChat : changeShowCatalogCreation}

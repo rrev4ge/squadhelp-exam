@@ -19,14 +19,15 @@ services:
   server-dev:
     build:
       context: ./server
-
+      dockerfile: Dockerfile.dev
     environment:
       NODE_ENV: development
+      CHOKIDAR_USEPOLLING: "true"
     ports:
       - "5000:5000"
     depends_on:
-      - db-dev
-      - mongo-dev
+      - postgres-db-dev
+      - mongo-db-dev
     volumes:
       - ./var/www/html/images:/var/www/html/images
       - ./server:/server

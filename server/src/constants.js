@@ -13,7 +13,7 @@ module.exports = {
   CONTEST_STATUS_FINISHED: 'finished',
   CONTEST_STATUS_PENDING: 'pending',
   CONTESTS_DEFAULT_DIR: '../public/contestFiles/',
-  UPLOAD_FILE_DEV_DIR: '../public/images',
+  UPLOAD_FILE_DEV_DIR: '../public/images/',
   UPLOAD_FILE_PROD_DIR: '/var/www/html/images/',
   NAME_CONTEST: 'name',
   LOGO_CONTEST: 'logo',

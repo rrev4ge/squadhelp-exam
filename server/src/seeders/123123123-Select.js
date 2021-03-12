@@ -143,5 +143,10 @@ module.exports = {
         describe: 'Builders',
       },
     ], {});
+
+  },
+
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete('Selects', null, {});
   },
 };

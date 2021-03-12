@@ -3,7 +3,7 @@ const express = require('express');
 const basicMiddlewares = require('../middlewares/basicMiddlewares');
 const contestController = require('../controllers/contestController');
 const checkToken = require('../middlewares/checkToken');
-const upload = require('../utils/fileUpload');
+const upload = require('../utils/fileTransfer');
 
 const contestRouter = express.Router();
 
@@ -35,7 +35,7 @@ contestRouter.post(
 );
 
 contestRouter.get(
-  '/downloadFile/:fileName',
+  '/getFile/:fileName',
   checkToken.checkToken,
   contestController.downloadFile,
 );

@@ -4,7 +4,7 @@ const multer = require('multer');
 const ServerError = require('../errors/ServerError');
 const CONSTANTS = require('../constants');
 const env = process.env.NODE_ENV || 'development';
-const devFilePath = path.resolve(__dirname, '..', '..', '..', CONSTANTS.UPLOAD_FILE_DEV_DIR);
+const devFilePath = path.resolve(__dirname, '..', '..', CONSTANTS.UPLOAD_FILE_DEV_DIR);
 
 const filePath = env === 'production'
   ? CONSTANTS.UPLOAD_FILE_PROD_DIR
@@ -21,7 +21,7 @@ const storageContestFiles = multer.diskStorage({
     cb(null, filePath);
   },
   filename (req, file, cb) {
-    cb(null, Date.now() + file.originalname);
+    cb(null, Date.now() + file.originalname.replace(/[^a-zA-Z0-9.-_]/g, ''));
   },
 });
 
@@ -75,5 +75,9 @@ module.exports.uploadLogoFiles = (req, res, next) => {
     }
     return next();
   });
+};
+
+module.exports.downloadContestFile = (fileName) => {
+  return filePath + fileName;
 };
 
