@@ -1,6 +1,6 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Selects', [
+  up: async (queryInterface, Sequelize) => {
+    return await queryInterface.bulkInsert('Selects', [
       {
         type: 'typeOfName',
         describe: 'Company',

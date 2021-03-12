@@ -124,7 +124,7 @@ module.exports.payment = async (req, res, next) => {
     },
     {
       cardNumber: {
-        [ db.sequelize.Op.in ]: [
+        [ db.Sequelize.Op.in ]: [
           CONSTANTS.SQUADHELP_BANK_NUMBER,
           req.body.number.replace(/ /g, ''),
         ],
@@ -195,7 +195,7 @@ module.exports.cashout = async (req, res, next) => {
     },
     {
       cardNumber: {
-        [ db.sequelize.Op.in ]: [
+        [ db.Sequelize.Op.in ]: [
           CONSTANTS.SQUADHELP_BANK_NUMBER,
           req.body.number.replace(/ /g, ''),
         ],

@@ -1,6 +1,6 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Banks', [
+  up: async (queryInterface, Sequelize) => {
+    return await queryInterface.bulkInsert('Banks', [
       {
         cardNumber: '6011601160116611',
         name: 'SquadHelp',
@@ -40,7 +40,7 @@ module.exports = {
   },
   down: async (queryInterface, Sequelize) => {
     const { Op } = Sequelize;
-    return queryInterface.bulkDelete('Bankss', {
+    return await queryInterface.bulkDelete('Bankss', {
       cardNumber:{
         [Op.in]: ['6011601160116611', '4111111111111111', '4444333322221111', '5555555555554444', '5555444433331111'] },
     }, {});

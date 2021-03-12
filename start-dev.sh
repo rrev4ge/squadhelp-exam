@@ -15,12 +15,12 @@ web=$(docker-compose --file docker-compose-dev.yaml ps | grep squadhelp_server-d
 
 # Run Sequalize's migrations.
 echo "-----> Running application migrations"
-docker exec -it "$web" sequelize db:migrate
+docker exec -it "$web" npx sequelize db:migrate
 echo ""
 
 # Run Sequalize's seeds.
 echo "-----> Running application seeds"
-docker exec -it "$web" sequelize db:seed:all
+docker exec -it "$web" npx sequelize db:seed:all
 echo "<----- Seeds created"
 
 ended_at=$(date +"%s")

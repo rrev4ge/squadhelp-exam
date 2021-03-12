@@ -1,6 +1,6 @@
+const _ = require('lodash');
 const db = require('../models/index');
 const ServerError = require('../errors/ServerError');
-
 const contestQueries = require('./queries/contestQueries');
 const userQueries = require('./queries/userQueries');
 const controller = require('../socketInit');
@@ -14,11 +14,11 @@ module.exports.dataForContest = async (req, res, next) => {
     const characteristics = await db.Selects.findAll({
       where: {
         type: {
-          [ db.Sequelize.Op.or ]: [
+          [ db.Sequelize.Op.or ]: _.compact([
             req.body.characteristic1,
             req.body.characteristic2,
             'industry',
-          ],
+          ]),
         },
       },
     });
@@ -224,7 +224,7 @@ module.exports.getCustomersContests = (req, res, next) => {
     order: [['id', 'DESC']],
     include: [
       {
-        model: Offer,
+        model: db.Offer,
         required: false,
         attributes: ['id'],
       },

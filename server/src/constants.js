@@ -1,4 +1,5 @@
 module.exports = {
+  DEVELOPMENT_PORT: 5000,
   JWT_SECRET: 'asdasdasd4as5d4as8d7a8sd4as65d4a8sd7asd4as56d4',
   ACCESS_TOKEN_TIME: 60 * 60,
   SALT_ROUNDS: 5,
@@ -12,8 +13,8 @@ module.exports = {
   CONTEST_STATUS_ACTIVE: 'active',
   CONTEST_STATUS_FINISHED: 'finished',
   CONTEST_STATUS_PENDING: 'pending',
-  CONTESTS_DEFAULT_DIR: '../public/contestFiles/',
-  UPLOAD_FILE_DEV_DIR: '../public/images/',
+  CONTESTS_DEFAULT_DIR: '/public/contestFiles/',
+  UPLOAD_FILE_DEV_DIR: '/public/images/',
   UPLOAD_FILE_PROD_DIR: '/var/www/html/images/',
   NAME_CONTEST: 'name',
   LOGO_CONTEST: 'logo',
