@@ -5,7 +5,7 @@
 ./server/uploadFiles
 ./server/upload
 ./server/public
-
+var/
 ./server/public/images
 .server/public/images
 **server/public/*

@@ -70,6 +70,7 @@ module.exports.addMessage = async (req, res, next) => {
 };
 
 module.exports.getChat = async (req, res, next) => {
+  console.log(req);
   const participants = [req.tokenData.userId, req.body.interlocutorId];
   participants.sort(
     (participant1, participant2) => participant1 - participant2);
