@@ -30,17 +30,17 @@ class Header extends React.Component{
                         <img
                             src={this.props.data.avatar === 'anon.png' ? CONSTANTS.ANONYM_IMAGE_PATH : `${CONSTANTS.publicURL}${this.props.data.avatar}`}
                             alt='user'/>
-                        <span>{`Hi, ${this.props.data.displayName}`}</span>
+                        <span style={{cursor: 'pointer'}}>{`Hi, ${this.props.data.displayName}`}</span>
                         <img src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`} alt='menu'/>
                         <ul>
                             <li><Link to='/dashboard'
                                       style={{textDecoration: 'none'}}><span>View Dashboard</span></Link></li>
                             <li><Link to='/account' style={{textDecoration: 'none'}}><span>My Account</span></Link></li>
-                            <li><Link to='http:/www.google.com'
+                            <li><Link to='/'
                                       style={{textDecoration: 'none'}}><span>Messages</span></Link></li>
-                            <li><Link to='http:/www.google.com' style={{textDecoration: 'none'}}><span>Affiliate Dashboard</span></Link>
+                            <li><Link to='/' style={{textDecoration: 'none'}}><span>Affiliate Dashboard</span></Link>
                             </li>
-                            <li><span onClick={this.logOut}>Logout</span></li>
+                            <li><span style={{cursor: 'pointer'}} onClick={this.logOut}>Logout</span></li>
                         </ul>
                     </div>
                     <img src={`${CONSTANTS.STATIC_IMAGES_PATH}email.png`} className={styles.emailIcon} alt='email'/>
@@ -70,14 +70,14 @@ class Header extends React.Component{
                 <div className={styles.loginSignnUpHeaders}>
                     <div className={styles.numberContainer}>
                         <img src={`${CONSTANTS.STATIC_IMAGES_PATH}phone.png`} alt='phone'/>
-                        <span>(877)&nbsp;355-3585</span>
+                        <a href="tel:(877)355-3585">(877)&nbsp;355-3585</a>
                     </div>
                     <div className={styles.userButtonsContainer}>
                         {this.renderLoginButtons()}
                     </div>
                 </div>
                 <div className={styles.navContainer}>
-                    <img src={`${CONSTANTS.STATIC_IMAGES_PATH}blue-logo.png`} className={styles.logo} alt='blue_logo'/>
+                    <Link to='/'><img src={`${CONSTANTS.STATIC_IMAGES_PATH}blue-logo.png`} className={styles.logo} alt='blue_logo'/></Link>
                     <div className={styles.leftNav}>
                         <div className={styles.nav}>
                             <ul>
