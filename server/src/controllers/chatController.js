@@ -70,8 +70,8 @@ module.exports.addMessage = async (req, res, next) => {
 };
 
 module.exports.getChat = async (req, res, next) => {
-  console.log(req);
-  const participants = [req.tokenData.userId, req.body.interlocutorId];
+  const { query:{ interlocutorId }, tokenData:{ userId } } = req;
+  const participants = [  userId, interlocutorId ];
   participants.sort(
     (participant1, participant2) => participant1 - participant2);
   try {
@@ -99,7 +99,7 @@ module.exports.getChat = async (req, res, next) => {
     ]);
 
     const interlocutor = await userQueries.findUser(
-      { id: req.body.interlocutorId });
+      { id: interlocutorId });
     res.send({
       messages,
       interlocutor: {
@@ -250,11 +250,12 @@ module.exports.addNewChatToCatalog = async (req, res, next) => {
 };
 
 module.exports.removeChatFromCatalog = async (req, res, next) => {
+  const { query:{ catalogId, chatId }, tokenData:{ userId } } = req;
   try {
     const catalog = await Catalog.findOneAndUpdate({
-      _id: req.body.catalogId,
-      userId: req.tokenData.userId,
-    }, { $pull: { chats: req.body.chatId } }, { new: true });
+      _id: catalogId,
+      userId,
+    }, { $pull: { chats: chatId } }, { new: true });
     res.send(catalog);
   } catch (err) {
     next(err);
@@ -262,9 +263,10 @@ module.exports.removeChatFromCatalog = async (req, res, next) => {
 };
 
 module.exports.deleteCatalog = async (req, res, next) => {
+  const { query:{ catalogId }, tokenData:{ userId } } = req;
   try {
     await Catalog.remove(
-      { _id: req.body.catalogId, userId: req.tokenData.userId });
+      { _id: catalogId, userId });
     res.end();
   } catch (err) {
     next(err);

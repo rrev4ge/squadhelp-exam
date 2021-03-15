@@ -1,9 +1,9 @@
 const express = require('express');
 
-const hashPass = require('../middlewares/hashPassMiddle');
-const checkToken = require('../middlewares/checkToken');
+const hashPass = require('../middlewares/hashPassMiddlewares');
+const checkToken = require('../middlewares/checkTokenMiddlewares');
 const userController = require('../controllers/userController');
-const validators = require('../middlewares/validators');
+const validators = require('../middlewares/validatorMiddlewares');
 const upload = require('../utils/fileTransfer');
 const basicMiddlewares = require('../middlewares/basicMiddlewares');
 
@@ -22,15 +22,15 @@ userRouter.post(
   userController.login,
 );
 
-userRouter.post(
-  '/updateUser',
+userRouter.patch(
+  '/update',
   checkToken.checkToken,
   upload.uploadAvatar,
   userController.updateUser,
 );
 
-userRouter.post(
-  '/getUser',
+userRouter.get(
+  '/',
   checkToken.checkAuth,
 );
 
@@ -40,7 +40,6 @@ userRouter.post(
   basicMiddlewares.onlyForCustomer,
   userController.changeMark,
 );
-
 
 userRouter.post(
   '/pay',

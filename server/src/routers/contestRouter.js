@@ -2,7 +2,8 @@ const express = require('express');
 
 const basicMiddlewares = require('../middlewares/basicMiddlewares');
 const contestController = require('../controllers/contestController');
-const checkToken = require('../middlewares/checkToken');
+const checkToken = require('../middlewares/checkTokenMiddlewares');
+const dataParser = require('../middlewares/dataParserMiddlewares');
 const upload = require('../utils/fileTransfer');
 
 const contestRouter = express.Router();
@@ -14,48 +15,50 @@ contestRouter.post(
 );
 
 
-contestRouter.post(
-  '/getCustomersContests',
+contestRouter.get(
+  '/customer',
   checkToken.checkToken,
+  dataParser.boolParser,
   contestController.getCustomersContests,
 );
 
 contestRouter.get(
-  '/getContestById',
+  '/:contestId',
   checkToken.checkToken,
   basicMiddlewares.canGetContest,
   contestController.getContestById,
 );
 
-contestRouter.post(
-  '/getAllContests',
+contestRouter.get(
+  '/',
   checkToken.checkToken,
   basicMiddlewares.onlyForCreative,
+  dataParser.boolParser,
   contestController.getContests,
 );
 
 contestRouter.get(
-  '/getFile/:fileName',
+  '/file/:fileName',
   checkToken.checkToken,
   contestController.downloadFile,
 );
 
-contestRouter.post(
-  '/updateContest',
+contestRouter.patch(
+  '/update',
   checkToken.checkToken,
   upload.updateContestFile,
   contestController.updateContest,
 );
 
 contestRouter.post(
-  '/setNewOffer',
+  '/createOffer',
   checkToken.checkToken,
   upload.uploadLogoFiles,
   basicMiddlewares.canSendOffer,
   contestController.setNewOffer,
 );
 
-contestRouter.post(
+contestRouter.patch(
   '/setOfferStatus',
   checkToken.checkToken,
   basicMiddlewares.onlyForCustomerWhoCreateContest,

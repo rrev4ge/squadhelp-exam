@@ -1,28 +1,31 @@
 const express = require('express');
 
-const checkToken = require('../middlewares/checkToken');
+const dataParser = require('../middlewares/dataParserMiddlewares');
+const checkToken = require('../middlewares/checkTokenMiddlewares');
 const chatController = require('../controllers/chatController');
 
 
 const chatRouter = express.Router();
 
 chatRouter.post(
-  '/newMessage',
+  '/messages',
   checkToken.checkToken,
   chatController.addMessage,
 );
 
-chatRouter.post(
-  '/getChat',
-  checkToken.checkToken,
-  chatController.getChat,
-);
-
-chatRouter.post(
-  '/getPreview',
+chatRouter.get(
+  '/preview',
   checkToken.checkToken,
   chatController.getPreview,
 );
+
+chatRouter.get(
+  '/dialog',
+  checkToken.checkToken,
+  dataParser.intParser,
+  chatController.getChat,
+);
+
 
 chatRouter.post(
   '/blackList',
@@ -31,45 +34,39 @@ chatRouter.post(
 );
 
 chatRouter.post(
-  '/favorite',
+  '/favorites',
   checkToken.checkToken,
   chatController.favoriteChat,
 );
 
-chatRouter.post(
-  '/createCatalog',
-  checkToken.checkToken,
-  chatController.createCatalog,
-);
+chatRouter
+  .route('/catalogs')
+  .get(
+    checkToken.checkToken,
+    chatController.getCatalogs,
+  )
+  .post(
+    checkToken.checkToken,
+    chatController.createCatalog,
+  )
+  .patch(
+    checkToken.checkToken,
+    chatController.updateNameCatalog,
+  )
+  .delete(
+    checkToken.checkToken,
+    chatController.deleteCatalog,
+  );
 
-chatRouter.post(
-  '/updateNameCatalog',
-  checkToken.checkToken,
-  chatController.updateNameCatalog,
-);
-
-chatRouter.post(
-  '/addNewChatToCatalog',
-  checkToken.checkToken,
-  chatController.addNewChatToCatalog,
-);
-
-chatRouter.post(
-  '/removeChatFromCatalog',
-  checkToken.checkToken,
-  chatController.removeChatFromCatalog,
-);
-
-chatRouter.post(
-  '/deleteCatalog',
-  checkToken.checkToken,
-  chatController.deleteCatalog,
-);
-
-chatRouter.post(
-  '/getCatalogs',
-  checkToken.checkToken,
-  chatController.getCatalogs,
-);
+chatRouter
+  .route('/catalogs/dialogs')
+  .post(
+    checkToken.checkToken,
+    chatController.addNewChatToCatalog,
+  )
+  .delete(
+    checkToken.checkToken,
+    chatController.removeChatFromCatalog,
+  );
 
 module.exports = chatRouter;

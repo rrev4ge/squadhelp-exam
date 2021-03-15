@@ -38,9 +38,11 @@ module.exports.dataForContest = async (req, res, next) => {
 };
 
 module.exports.getContestById = async (req, res, next) => {
+  console.log(req);
+  const { params:{ contestId }, tokenData:{ userId, role } } = req;
   try {
     let contestInfo = await db.Contest.findOne({
-      where: { id: req.headers.contestid },
+      where: { id: contestId },
       order: [
         [db.Offer, 'id', 'asc'],
       ],
@@ -60,8 +62,8 @@ module.exports.getContestById = async (req, res, next) => {
         {
           model: db.Offer,
           required: false,
-          where: req.tokenData.role === CONSTANTS.CREATOR
-            ? { userId: req.tokenData.userId }
+          where: role === CONSTANTS.CREATOR
+            ? { userId }
             : {},
           attributes: { exclude: ['userId', 'contestId'] },
           include: [
@@ -80,7 +82,7 @@ module.exports.getContestById = async (req, res, next) => {
             {
               model: db.Rating,
               required: false,
-              where: { userId: req.tokenData.userId },
+              where: { userId },
               attributes: { exclude: ['userId', 'offerId'] },
             },
           ],
@@ -217,10 +219,11 @@ module.exports.setOfferStatus = async (req, res, next) => {
 };
 
 module.exports.getCustomersContests = (req, res, next) => {
+  const { query: { offset, limit, contestStatus }, tokenData:{ userId } } = req;
   db.Contest.findAll({
-    where: { status: req.headers.status, userId: req.tokenData.userId },
-    limit: req.body.limit,
-    offset: req.body.offset ? req.body.offset : 0,
+    where: { status: contestStatus, userId },
+    limit,
+    offset: offset ? offset : 0,
     order: [['id', 'DESC']],
     include: [
       {
@@ -243,18 +246,19 @@ module.exports.getCustomersContests = (req, res, next) => {
 };
 
 module.exports.getContests = (req, res, next) => {
-  const predicates = UtilFunctions.createWhereForAllContests(req.body.typeIndex,
-    req.body.contestId, req.body.industry, req.body.awardSort);
+  const { query: { offset, limit, typeIndex, contestId, industry, awardSort, ownEntries }, tokenData:{ userId } } = req;
+  const predicates = UtilFunctions.createWhereForAllContests(typeIndex,
+    contestId, industry, awardSort);
   db.Contest.findAll({
     where: predicates.where,
     order: predicates.order,
-    limit: req.body.limit,
-    offset: req.body.offset ? req.body.offset : 0,
+    limit,
+    offset: offset ? offset : 0,
     include: [
       {
         model: db.Offer,
-        required: req.body.ownEntries,
-        where: req.body.ownEntries ? { userId: req.tokenData.userId } : {},
+        required: ownEntries,
+        where: ownEntries ? { userId } : {},
         attributes: ['id'],
       },
     ],
@@ -269,6 +273,6 @@ module.exports.getContests = (req, res, next) => {
       res.send({ contests, haveMore });
     })
     .catch(err => {
-      next(new ServerError());
+      next(new ServerError(err));
     });
 };
