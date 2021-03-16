@@ -17,7 +17,7 @@ module.exports = {
       },
       {
         cardNumber: '4444333322221111',
-        name: 'asdfgb',
+        name: 'asdfghb',
         expiry: '09/29',
         cvc: '111',
         balance: 50000,
@@ -31,7 +31,7 @@ module.exports = {
       },
       {
         cardNumber: '5555444433331111',
-        name: 'asdfgc',
+        name: 'asdfghc',
         expiry: '09/29',
         cvc: '111',
         balance: 0,
@@ -40,7 +40,7 @@ module.exports = {
   },
   down: async (queryInterface, Sequelize) => {
     const { Op } = Sequelize;
-    return await queryInterface.bulkDelete('Bankss', {
+    return await queryInterface.bulkDelete('Banks', {
       cardNumber:{
         [Op.in]: ['6011601160116611', '4111111111111111', '4444333322221111', '5555555555554444', '5555444433331111'] },
     }, {});
