@@ -38,7 +38,6 @@ module.exports.dataForContest = async (req, res, next) => {
 };
 
 module.exports.getContestById = async (req, res, next) => {
-  console.log(req);
   const { params:{ contestId }, tokenData:{ userId, role } } = req;
   try {
     let contestInfo = await db.Contest.findOne({
