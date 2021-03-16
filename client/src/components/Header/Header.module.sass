@@ -32,6 +32,7 @@
       font-size: 14px
       font-weight: 400
       margin-bottom: 10px
+      cursor: pointer
 
       &:hover
         color: white
@@ -67,6 +68,7 @@
             align-items: center
             justify-content: flex-start
             margin-right: 30px
+            cursor: pointer
             @media(max-width: 700px)
               width: 100%
               padding: 0 15px
@@ -151,16 +153,16 @@
 
       .userInfo
         display: flex
-        justify-content: center
+        justify-content: space-between
         align-items: center
-        padding: 0 15px
+        padding: 10px 15px
         border-right: 1px solid #ebebeb
 
         &:hover
           ul
             display: block
             position: absolute
-            top: 45px
+            top: 70px
 
         ul
           border: 1px solid #eee
@@ -212,7 +214,7 @@
       padding: 0 15px
       border-right: 1px solid #ebebeb
       border-left: 1px solid #ebebeb
-      margin-left: 120px
+      margin-left: 10px
       height: 40px
       @media(max-width: 600px)
         margin-left: 10px
@@ -220,7 +222,8 @@
         padding: 0 5px
         margin-left: 0
 
-      span
+      a
+        text-decoration: none
         color: #337ab7
         font-size: 14px
         margin-left: 10px

@@ -30,17 +30,17 @@ class Header extends React.Component{
                         <img
                             src={this.props.data.avatar === 'anon.png' ? CONSTANTS.ANONYM_IMAGE_PATH : `${CONSTANTS.publicURL}${this.props.data.avatar}`}
                             alt='user'/>
-                        <span>{`Hi, ${this.props.data.displayName}`}</span>
+                        <span style={{cursor: 'pointer'}}>{`Hi, ${this.props.data.displayName}`}</span>
                         <img src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`} alt='menu'/>
                         <ul>
                             <li><Link to='/dashboard'
                                       style={{textDecoration: 'none'}}><span>View Dashboard</span></Link></li>
                             <li><Link to='/account' style={{textDecoration: 'none'}}><span>My Account</span></Link></li>
-                            <li><Link to='http:/www.google.com'
+                            <li><Link to='/'
                                       style={{textDecoration: 'none'}}><span>Messages</span></Link></li>
-                            <li><Link to='http:/www.google.com' style={{textDecoration: 'none'}}><span>Affiliate Dashboard</span></Link>
+                            <li><Link to='/' style={{textDecoration: 'none'}}><span>Affiliate Dashboard</span></Link>
                             </li>
-                            <li><span onClick={this.logOut}>Logout</span></li>
+                            <li><span style={{cursor: 'pointer'}} onClick={this.logOut}>Logout</span></li>
                         </ul>
                     </div>
                     <img src={`${CONSTANTS.STATIC_IMAGES_PATH}email.png`} className={styles.emailIcon} alt='email'/>
@@ -65,19 +65,19 @@ class Header extends React.Component{
             <div className={styles.headerContainer}>
                 <div className={styles.fixedHeader}>
                     <span className={styles.info}>Squadhelp recognized as one of the Most Innovative Companies by Inc Magazine.</span>
-                    <a href="http://www.google.com">Read Announcement</a>
+                    <a href="/">Read Announcement</a>
                 </div>
                 <div className={styles.loginSignnUpHeaders}>
                     <div className={styles.numberContainer}>
                         <img src={`${CONSTANTS.STATIC_IMAGES_PATH}phone.png`} alt='phone'/>
-                        <span>(877)&nbsp;355-3585</span>
+                        <a href="tel:(877)355-3585">(877)&nbsp;355-3585</a>
                     </div>
                     <div className={styles.userButtonsContainer}>
                         {this.renderLoginButtons()}
                     </div>
                 </div>
                 <div className={styles.navContainer}>
-                    <img src={`${CONSTANTS.STATIC_IMAGES_PATH}blue-logo.png`} className={styles.logo} alt='blue_logo'/>
+                    <Link to='/'><img src={`${CONSTANTS.STATIC_IMAGES_PATH}blue-logo.png`} className={styles.logo} alt='blue_logo'/></Link>
                     <div className={styles.leftNav}>
                         <div className={styles.nav}>
                             <ul>
@@ -85,14 +85,14 @@ class Header extends React.Component{
                                     <span>NAME IDEAS</span><img src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
                                                                 alt='menu'/>
                                     <ul>
-                                        <li><a href="http://www.google.com">Beauty</a></li>
-                                        <li><a href="http://www.google.com">Consulting</a></li>
-                                        <li><a href="http://www.google.com">E-Commerce</a></li>
-                                        <li><a href="http://www.google.com">Fashion & Clothing</a></li>
-                                        <li><a href="http://www.google.com">Finance</a></li>
-                                        <li><a href="http://www.google.com">Real Estate</a></li>
-                                        <li><a href="http://www.google.com">Tech</a></li>
-                                        <li className={styles.last}><a href="http://www.google.com">More Categories</a>
+                                        <li><a href="/">Beauty</a></li>
+                                        <li><a href="/">Consulting</a></li>
+                                        <li><a href="/">E-Commerce</a></li>
+                                        <li><a href="/">Fashion & Clothing</a></li>
+                                        <li><a href="/">Finance</a></li>
+                                        <li><a href="/">Real Estate</a></li>
+                                        <li><a href="/">Tech</a></li>
+                                        <li className={styles.last}><a href="/">More Categories</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -100,13 +100,13 @@ class Header extends React.Component{
                                     <span>CONTESTS</span><img src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
                                                               alt='menu'/>
                                     <ul>
-                                        <li><a href="http://www.google.com">HOW IT WORKS</a></li>
-                                        <li><a href="http://www.google.com">PRICING</a></li>
-                                        <li><a href="http://www.google.com">AGENCY SERVICE</a></li>
-                                        <li><a href="http://www.google.com">ACTIVE CONTESTS</a></li>
-                                        <li><a href="http://www.google.com">WINNERS</a></li>
-                                        <li><a href="http://www.google.com">LEADERBOARD</a></li>
-                                        <li className={styles.last}><a href="http://www.google.com">BECOME A
+                                        <li><a href="/">HOW IT WORKS</a></li>
+                                        <li><a href="/">PRICING</a></li>
+                                        <li><a href="/">AGENCY SERVICE</a></li>
+                                        <li><a href="/">ACTIVE CONTESTS</a></li>
+                                        <li><a href="/">WINNERS</a></li>
+                                        <li><a href="/">LEADERBOARD</a></li>
+                                        <li className={styles.last}><a href="/">BECOME A
                                             CREATIVE</a></li>
                                     </ul>
                                 </li>
@@ -114,10 +114,10 @@ class Header extends React.Component{
                                     <span>Our Work</span><img src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
                                                               alt='menu'/>
                                     <ul>
-                                        <li><a href="http://www.google.com">NAMES</a></li>
-                                        <li><a href="http://www.google.com">TAGLINES</a></li>
-                                        <li><a href="http://www.google.com">LOGOS</a></li>
-                                        <li className={styles.last}><a href="http://www.google.com">TESTIMONIALS</a>
+                                        <li><a href="/">NAMES</a></li>
+                                        <li><a href="/">TAGLINES</a></li>
+                                        <li><a href="/">LOGOS</a></li>
+                                        <li className={styles.last}><a href="/">TESTIMONIALS</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -125,12 +125,12 @@ class Header extends React.Component{
                                     <span>Names For Sale</span>
                                     <img src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`} alt='menu'/>
                                     <ul>
-                                        <li><a href="http://www.google.com">POPULAR NAMES</a></li>
-                                        <li><a href="http://www.google.com">SHORT NAMES</a></li>
-                                        <li><a href="http://www.google.com">INTRIGUING NAMES</a></li>
-                                        <li><a href="http://www.google.com">NAMES BY CATEGORY</a></li>
-                                        <li><a href="http://www.google.com">VISUAL NAME SEARCH</a></li>
-                                        <li className={styles.last}><a href="http://www.google.com">SELL YOUR
+                                        <li><a href="/">POPULAR NAMES</a></li>
+                                        <li><a href="/">SHORT NAMES</a></li>
+                                        <li><a href="/">INTRIGUING NAMES</a></li>
+                                        <li><a href="/">NAMES BY CATEGORY</a></li>
+                                        <li><a href="/">VISUAL NAME SEARCH</a></li>
+                                        <li className={styles.last}><a href="/">SELL YOUR
                                             DOMAINS</a></li>
                                     </ul>
                                 </li>
@@ -138,10 +138,10 @@ class Header extends React.Component{
                                     <span>Blog</span><img src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
                                                           alt='menu'/>
                                     <ul>
-                                        <li><a href="http://www.google.com">ULTIMATE NAMING GUIDE</a></li>
-                                        <li><a href="http://www.google.com">POETIC DEVICES IN BUSINESS NAMING</a></li>
-                                        <li><a href="http://www.google.com">CROWDED BAR THEORY</a></li>
-                                        <li className={styles.last}><a href="http://www.google.com">ALL ARTICLES</a>
+                                        <li><a href="/">ULTIMATE NAMING GUIDE</a></li>
+                                        <li><a href="/">POETIC DEVICES IN BUSINESS NAMING</a></li>
+                                        <li><a href="/">CROWDED BAR THEORY</a></li>
+                                        <li className={styles.last}><a href="/">ALL ARTICLES</a>
                                         </li>
                                     </ul>
                                 </li>

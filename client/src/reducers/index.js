@@ -14,7 +14,7 @@ import userProfileReducer from './userProfileReducer';
 
 
 
-const appReducer=combineReducers({
+const rootReducer=combineReducers({
    form: formReducer,
    userStore: getUserReducer,
    auth: authReducer,
@@ -29,4 +29,4 @@ const appReducer=combineReducers({
    userProfile: userProfileReducer
 });
 
-export default appReducer;
+export default rootReducer;
