@@ -1,0 +1,28 @@
+.container
+    display: grid
+
+.eventsContainer
+    display: grid
+    grid-template-rows: repeat(2, auto)
+    width: 75%
+    min-height: 80vh
+    text-align: center
+    align-items: baseline
+    justify-self: center
+
+.formContainer
+    display: grid
+    grid-template-columns: repeat( auto-fit, minmax(300px, 1fr))
+    justify-items: center
+    align-items: center
+
+.listContainer
+    display: grid
+    grid-template-rows: repeat( auto-fit, 1fr)
+    row-gap: 10px
+    justify-content: stretch
+    overflow: scroll;
+    height: 300px;
+    overflow-x: hidden;
+    
+    li

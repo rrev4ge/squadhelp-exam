@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import CONSTANTS from '../../constants';
 import {getUserAction, clearUserStore, headerRequest} from '../../actions/actionCreator';
+import { clearEventsStore } from './../../actions/eventsActionCreator';
 
 
 class Header extends React.Component{
@@ -14,8 +15,9 @@ class Header extends React.Component{
   }
 
   logOut = () => {
-    localStorage.clear();
+    localStorage.removeItem('accessToken');
     this.props.clearUserStore();
+    this.props.clearEventsStore();
     this.props.history.replace('/login');
   };
 
@@ -40,6 +42,9 @@ class Header extends React.Component{
                                       style={{textDecoration: 'none'}}><span>Messages</span></Link></li>
                             <li><Link to='/' style={{textDecoration: 'none'}}><span>Affiliate Dashboard</span></Link>
                             </li>
+                            {this.props.data && this.props.data.role === CONSTANTS.CUSTOMER &&
+                                <li><Link to='/events'
+                                      style={{textDecoration: 'none'}}><span>Events</span></Link></li>}
                             <li><span style={{cursor: 'pointer'}} onClick={this.logOut}>Logout</span></li>
                         </ul>
                     </div>
@@ -163,6 +168,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getUser: () => dispatch(headerRequest()),
     clearUserStore: () => dispatch(clearUserStore()),
+    clearEventsStore: () => dispatch(clearEventsStore()),
   };
 };
 
