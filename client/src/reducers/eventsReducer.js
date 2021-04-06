@@ -19,7 +19,6 @@ function eventsReducer (state = initialState, action) {
     };
     case ACTION.SET_EVENT_SUCCESS: {
       return produce(state, draftState=>{
-        console.log(event);
         draftState.events = [...state.events, event ];
         draftState.isFetching = false;
       });
@@ -36,6 +35,12 @@ function eventsReducer (state = initialState, action) {
         draftState.isFetching = false;
         draftState.error = error;
       });
+    };
+    case ACTION.UPDATE_EVENTS_STORE: {
+      return produce(state,draftState=>{
+        draftState.events = [...draftState.events];
+        draftState.error = null;
+      })
     };
     case ACTION.CLEAR_EVENTS_STORE: {
       return produce(state,draftState=>{

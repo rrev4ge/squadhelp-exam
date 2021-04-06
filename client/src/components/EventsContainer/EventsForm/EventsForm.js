@@ -33,11 +33,11 @@ const EventsForm = (props) => {
 
 
     const formInputClasses = {
-      container: styles.inputContainer,
-      input: styles.input,
-      warning: styles.fieldWarning,
-      notValid: styles.notValid,
-      valid: styles.valid,
+        input: styles.input,
+        warning: styles.fieldWarning,
+        notValid: styles.notValid,
+        error: styles.error,
+        valid: styles.valid,
     };
 
     return (
@@ -65,9 +65,9 @@ const EventsForm = (props) => {
                     label='Alert time'
                 />
                 <button type='submit' disabled = {submitting}
-                        className={ styles.submitContainer }
+                        className={ styles.input }
                     >
-                    <span className={ styles.inscription }>Start Timer</span>
+                    <span>Start Timer</span>
                 </button>
             </form>
         </div>

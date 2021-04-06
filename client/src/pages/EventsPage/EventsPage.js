@@ -16,9 +16,9 @@ const EventsPage = (props) => {
     }
 
     const eventsClasses = {
-      eventsContainer: styles.eventsContainer,
-      formContainer: styles.formContainer,
-      listContainer: styles.listContainer,
+        eventsContainer: styles.eventsContainer,
+        formContainer: styles.formContainer,
+        listContainer: styles.listContainer,
     };
 
     return (

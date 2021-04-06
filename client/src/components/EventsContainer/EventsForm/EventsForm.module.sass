@@ -1,7 +1,7 @@
 
 .error
     text-align: center
-    color: white
+    color: black
     font-size: 20px
     min-width: 260px
     align-self: stretch
@@ -9,47 +9,41 @@
     margin-left: 20px
     border: 1px solid white
     background-color: red
-    padding-top: 5px
-    padding-bottom: 5px
+    padding: 5px
     border-radius: 6px
     margin-bottom: 10px
 @media(max-width: 850px)
     align-self: auto
 
-.inputContainer
-    display: flex
-    flex-direction: column
-    justify-content: center
-    align-self: flex-start
-    margin-right: 20px
-    margin-left: 20px
-    flex: 1 1
-
 .fieldWarning
     font-size: 15px
     display: flex
+    position: absolute
+    background: white
     flex-direction: row
     justify-content: center
     align-items: center
-    color: white
+    color: black
     border: 1px solid #b72522
+    border-radius: 4px
     margin-bottom: 15px
-    padding-bottom: 5px
-    padding-top: 5px
+    padding: 5px
     text-align: center
+    width: 100%
 
 .input
     background-color: white
     border: 2px solid #9ca8b7 !important
     border-radius: 4px
     color: #9ca8b7
-    font-size: 18px
     padding: 10px  20px
     outline: none
-    // margin-bottom: 15px
-    // flex: 1
-    // @media(max-width: 1400px)
-    // align-self: normal
+    width: 100%
+
+.input[type="submit"]
+    background-color: #28d2d0
+    color: white
+    border: 2px solid #28d2d0 !important
 
 .notValid
     border: 2px solid red !important

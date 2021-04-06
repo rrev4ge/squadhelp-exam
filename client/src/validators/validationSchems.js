@@ -1,5 +1,6 @@
 import * as yup from 'yup';
 import valid from 'card-validator';
+import moment from 'moment'
 
 
 
@@ -65,7 +66,7 @@ export default {
     EventsSchema: yup.object().shape({
         eventName: yup.string().test('test-eventName','Event name must be required', value => (value && value.trim().length>=1)).required('required'),
         startTime: yup.date().default(() => new Date()),
-        estimatedTime: yup.date().min(yup.ref('startTime'),'estimated time should be greator').required('required'),
-        // alertTime: yup.date().when('estimatedTime', (st, schema) => yup.date().max(st)).required('required')
+        estimatedTime: yup.date().min(yup.ref('startTime'),'estimated time should be greater now time').required('required'),
+        alertTime: yup.date().test('test-alertName','Alert time should be less them estimated time', function(value) { return moment(value).diff(moment())>0 && moment(value).diff(this.parent.estimatedTime)<0}).required('required')
     })
 }

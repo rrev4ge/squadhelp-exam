@@ -12,6 +12,7 @@ const EventsContainer = (props) => {
             <EventsList classes={classes.listContainer}/>
         </div>
     );
+        
 }
 
 export default EventsContainer;

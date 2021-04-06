@@ -1,28 +1,40 @@
 .container
     display: grid
+    align-items: center
 
 .eventsContainer
     display: grid
-    grid-template-rows: repeat(2, auto)
+    grid-template-columns: repeat(auto-fit, minmax(300px, 600px))
+    row-gap: 10px
+    column-gap: 20px
     width: 75%
-    min-height: 80vh
-    text-align: center
-    align-items: baseline
+    padding: 10px 0
+    min-height: 85vh
+    align-items: center
+    align-content: center
     justify-self: center
+    justify-content: center
+    @media(max-width: 850px)
+        width: 95%
 
 .formContainer
     display: grid
-    grid-template-columns: repeat( auto-fit, minmax(300px, 1fr))
-    justify-items: center
+    grid-template-rows: repeat(4, 1fr)
+    row-gap: 10px
     align-items: center
+    position: relative
+    @media(max-width: 850px)
+        padding: unset
 
 .listContainer
     display: grid
-    grid-template-rows: repeat( auto-fit, 1fr)
+    align-content: baseline
+    text-align: center
+    color: #9ca8b7
     row-gap: 10px
-    justify-content: stretch
-    overflow: scroll;
-    height: 300px;
-    overflow-x: hidden;
-    
-    li
+    padding: 0 10px
+    height: 400px
+    // @media(max-width: 850px)
+    //     min-width: 600px
+    // @media(max-width: 320px)
+    //     min-width: 300px

@@ -62,3 +62,9 @@ export const clearEventsStore=()=>{
         type: ACTION.CLEAR_EVENTS_STORE,
     }
 };
+
+export const updateEventsStore=()=>{
+    return{
+        type: ACTION.UPDATE_EVENTS_STORE,
+    }
+};
