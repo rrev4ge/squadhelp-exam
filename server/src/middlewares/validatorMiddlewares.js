@@ -38,3 +38,12 @@ module.exports.validateContestCreation = (req, res, next) => {
       next(err);
     });
 };
+
+module.exports.validateForgotPassToken = async (req, res, next) => {
+  const validationResult = await schems.forgotPassTokenSchem.isValid(req.body);
+  if (validationResult) {
+    next();
+  } else {
+    return next(new BadRequestError('Invalid data for forgot password'));
+  }
+};

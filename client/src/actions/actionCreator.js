@@ -436,3 +436,18 @@ export const changeModalShow=(data)=>{
         data: data
     }
 };
+
+export const authActionForgotPassToken = (data) => {
+    return {
+        type: ACTION.AUTH_ACTION_FORGOT_PASS_TOKEN,
+        data: data
+    }
+};
+
+export const authActionForgotPass = (data) => {
+    return {
+        type: ACTION.AUTH_ACTION_FORGOT_PASS,
+        data: data
+    }
+};
+

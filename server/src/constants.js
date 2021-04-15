@@ -31,4 +31,14 @@ module.exports = {
   NOTIFICATION_CHANGE_OFFER_STATUS: 'changeOfferStatus',
   NEW_MESSAGE: 'newMessage',
   CHANGE_BLOCK_STATUS: 'CHANGE_BLOCK_STATUS',
+  SERVICE_EMAIL_ACCOUNT: {
+    host: 'smtp.ethereal.email',
+    port: 587,
+    secure: false,
+    // service: 'gmail',
+    auth: {
+      user:'user',
+      pass: 'pass',
+    },
+  },
 };

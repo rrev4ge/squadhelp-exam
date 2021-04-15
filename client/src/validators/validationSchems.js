@@ -61,5 +61,10 @@ export default {
         lastName: yup.string().test('test-lastName','required',value => (value && value.trim().length>=1)).required('required'),
         displayName: yup.string().test('test-displayName','required',value => (value && value.trim().length>=1)).required('required'),
         file: yup.mixed()
-    })
+    }),
+    ForgotPasswordSchem: yup.object().shape({
+        email: yup.string().email('check email').required('required'),
+        newPassword: yup.string().test('test-password','min 6 symbols',value => (value && value.trim().length>=6)).required('required'),
+        confirmPassword: yup.string().required('confirm password is required').oneOf([yup.ref('newPassword')],'confirmation pass must match new password'),
+    }),
 }

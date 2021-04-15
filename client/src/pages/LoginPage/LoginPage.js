@@ -24,7 +24,11 @@ const LoginPage = (props) => {
         <div className={ styles.loginFormContainer }>
           <LoginForm changeRoute={ changeRoute }/>
         </div>
-      </div>
+        <div className={ styles.forgotPassContainer }>
+          <Link to='/forgotPassword'
+                style={ {textDecoration: 'none'} }><span>Forgot Password ?</span></Link>
+        </div>
+    </div>
     </div>
   );
 

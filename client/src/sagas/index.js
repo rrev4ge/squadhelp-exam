@@ -1,6 +1,6 @@
 import {takeLatest, takeLeading, takeEvery} from 'redux-saga/effects';
 import ACTION from '../actions/actionTypes';
-import {registerSaga, loginSaga} from './authSagas';
+import {registerSaga, loginSaga, forgotPassTokenSaga, forgotPassSaga} from './authSagas';
 import {privateSaga, updateUserData, notAuthorizeSaga, headerRequest} from './userSaga';
 import {paymentSaga, cashoutSaga} from './paymentSaga';
 import {
@@ -55,6 +55,9 @@ function* rootSaga() {
     yield  takeLatest(ACTION.DELETE_CATALOG_REQUEST,deleteCatalog);
     yield  takeLatest(ACTION.REMOVE_CHAT_FROM_CATALOG_REQUEST,removeChatFromCatalogSaga);
     yield  takeLatest(ACTION.CHANGE_CATALOG_NAME_REQUEST,changeCatalogName);
+    yield  takeLatest(ACTION.AUTH_ACTION_FORGOT_PASS_TOKEN, forgotPassTokenSaga);
+    yield  takeLatest(ACTION.AUTH_ACTION_FORGOT_PASS, forgotPassSaga);
+
 }
 
 export default rootSaga;
