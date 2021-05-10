@@ -63,7 +63,7 @@ module.exports.getContestById = async (req, res, next) => {
           required: false,
           where: role === CONSTANTS.CREATOR
             ? { userId }
-            : {},
+            : { status: CONSTANTS.OFFER_STATUS_PENDING },
           attributes: { exclude: ['userId', 'contestId'] },
           include: [
             {
@@ -274,4 +274,58 @@ module.exports.getContests = (req, res, next) => {
     .catch(err => {
       next(new ServerError(err));
     });
+};
+
+module.exports.getOffers = async (req, res, next) => {
+  const { query: { offset, limit, offerStatus } } = req;
+  console.log(req.query);
+  try {
+    const offers = await db.Offer.findAll({
+      where: {
+        status: offerStatus,
+      },
+      limit,
+      offset: offset !== 'undefined' ? offset : 0,
+      include: {
+        model: db.User,
+        attributes: { exclude: ['password', 'accessToken', 'balance'] },
+      },
+    });
+    offers.forEach(
+      offer => offer.dataValues);
+    let haveMore = true;
+    if (offers.length === 0) {
+      haveMore = false;
+    }
+    console.log(`offers: ${offers.length}\nhaveMore: ${haveMore}`);
+    res.send({ offers, haveMore });
+  }
+  catch (err) {
+    next(err);
+  }
+};
+
+module.exports.moderateOffer = async (req, res, next) => {
+  const { query: { id, offerStatus } } = req;
+  try {
+    const foundOffer = await db.Offer.findByPk(id, { attributes: { exclude: ['createdAt', 'updatedAt'] } });
+    console.log('foundOffer :>> ', foundOffer);
+    const data = {
+      id: foundOffer.dataValues.id,
+      userId: foundOffer.dataValues.userId,
+      contestId: foundOffer.dataValues.contestId,
+      text: foundOffer.dataValues.text,
+      fileName: foundOffer.dataValues.fileName,
+      originalFileName: foundOffer.dataValues.originalFileName,
+      status: offerStatus,
+    }
+    if (foundOffer) {
+      const updatedOffer = await foundOffer.update(data, { attributes: { exclude: ['createdAt', 'updatedAt'] } });
+      console.log('updatedOffer :>> ', updatedOffer);
+      return res.send(updatedOffer);
+    }
+    res.send('The task not found');
+  } catch (err) {
+    next(err);
+  }
 };

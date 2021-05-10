@@ -18,8 +18,8 @@ export const downloadContestFile = (data) => http.get('/contests/file/' + data.f
 export const getCustomersContests = ({offset, limit, contestStatus}) => http.get(`/contests/customer?offset=${offset}&limit=${limit}&contestStatus=${contestStatus}`);
 export const getActiveContests = ({offset, limit, typeIndex, contestId, industry, awardSort, ownEntries}) => http.get(`/contests?offset=${offset}&limit=${limit}&typeIndex=${typeIndex}&contestId=${contestId}&industry=${industry}&awardSort=${awardSort}&ownEntries=${ownEntries}`);
 export const getContestById = ({contestId}) => http.get(`/contests/${contestId}`);
-
-
+export const getOffers = ({offset, limit, offerStatus}) => http.get(`/offers/getOffers?offset=${offset}&limit=${limit}&offerStatus=${offerStatus}`);
+export const moderateOffer = ({id, offerStatus}) => http.patch(`/offers/moderateOffer?id=${id}&offerStatus=${offerStatus}`);
 
 // Chat Api
 export const getPreviewChat = () => http.get('/chat/preview');

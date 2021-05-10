@@ -11,7 +11,7 @@ import {
     getContestByIdSaga,
     downloadContestFileSaga
 } from './contestsSagas'
-import {changeMarkSaga, setOfferStatusSaga, addOfferSaga} from './offerSagas';
+import {changeMarkSaga, setOfferStatusSaga, addOfferSaga, getOffersSaga, moderateOfferSaga} from './offerSagas';
 import {
     previewSaga,
     getDialog,
@@ -55,6 +55,9 @@ function* rootSaga() {
     yield  takeLatest(ACTION.DELETE_CATALOG_REQUEST,deleteCatalog);
     yield  takeLatest(ACTION.REMOVE_CHAT_FROM_CATALOG_REQUEST,removeChatFromCatalogSaga);
     yield  takeLatest(ACTION.CHANGE_CATALOG_NAME_REQUEST,changeCatalogName);
+    yield  takeLatest(ACTION.GET_OFFERS_ACTION,getOffersSaga);
+    yield  takeLatest(ACTION.MODERATE_OFFER_ACTION,moderateOfferSaga);
+
 }
 
 export default rootSaga;
