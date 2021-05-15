@@ -10,3 +10,4 @@ var/
 .server/public/images
 **server/public/*
 *server/public/*
+logs/

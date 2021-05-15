@@ -31,4 +31,8 @@ module.exports = {
   NOTIFICATION_CHANGE_OFFER_STATUS: 'changeOfferStatus',
   NEW_MESSAGE: 'newMessage',
   CHANGE_BLOCK_STATUS: 'CHANGE_BLOCK_STATUS',
+  LOG_FILES: {
+    DIR_PATH: '../../logs/',
+    ERRORS: 'errors_log.json',
+  },
 };
