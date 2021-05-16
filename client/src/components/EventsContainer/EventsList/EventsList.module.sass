@@ -1,0 +1,49 @@
+
+.listHeader
+    display: grid
+    grid-template-columns: repeat(3, auto)
+    border-bottom: 1px solid #9ca8b7
+    padding: 10px 0
+    text-align: left
+    align-items: center
+    div:last-child
+        text-align: right
+
+.alert
+    background-color: #e69fb8  
+    border-radius: 3px 
+    padding: 0 3px
+    color: white
+    text-align: center
+    cursor: pointer   
+
+.list
+    display: grid
+    align-content: baseline
+    row-gap: 10px
+    height: 300px
+    overflow: scroll
+    overflow-x: hidden
+    overflow-y: auto
+    scrollbar-width: 40px
+
+    &:hover
+        overflow-y: auto
+
+    div > *
+        height: 30px
+        width: 99%
+    
+.list::-webkit-scrollbar
+    -webkit-appearance: none;
+    width: 7px
+    background-color: #e4e4e4
+    border-radius: 9em
+
+.list::-webkit-scrollbar-thumb
+    background-color: #9ca8b7
+    border-radius: 5px
+    box-shadow: 0 0 1px rgba(255,255,255,0.5)
+
+    &:hover
+        background-color: none

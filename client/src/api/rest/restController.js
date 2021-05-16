@@ -1,4 +1,5 @@
 import http from '../interceptor';
+import { loadState, saveState } from './../localStorage';
 
 // User Api
 export const registerRequest = (data) => http.post('/users/registration', data);
@@ -35,11 +36,8 @@ export const changeCatalogName = (data) => http.patch('/chat/catalogs', data);
 export const addChatToCatalog = (data) => http.post('/chat/catalogs/dialogs', data);
 export const removeChatFromCatalog = ({catalogId, chatId}) => http.delete(`/chat/catalogs/dialogs?catalogId=${catalogId}&chatId=${chatId}`);
 
-
-
-
-
-
-
+// Events Api
+export const setEvent = (data) => saveState(data);
+export const getEvents = (data) => loadState(data);
 
 
