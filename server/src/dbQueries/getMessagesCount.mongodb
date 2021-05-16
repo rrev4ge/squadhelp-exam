@@ -1,0 +1,16 @@
+
+
+use('shm-exam-chat');
+
+db.messages.aggregate(
+  [
+    {
+      $match: {
+        body: { $regex: /.*[Пп]аровоз.*/ }
+      }
+    },
+    {
+      $count: 'messages_count',
+    }
+  ]
+);
