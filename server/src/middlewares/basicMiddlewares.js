@@ -49,7 +49,6 @@ module.exports.onlyForCreative = (req, res, next) => {
   } else {
     next();
   }
-
 };
 
 module.exports.onlyForCustomer = (req, res, next) => {
@@ -119,3 +118,10 @@ module.exports.canUpdateContest = async (req, res, next) => {
   }
 };
 
+module.exports.onlyForModerator = (req, res, next) => {
+  if (req.tokenData.role !== CONSTANTS.MODERATOR) {
+    return next(new RightsError('this page only for moderator'));
+  } else {
+    next();
+  }
+};

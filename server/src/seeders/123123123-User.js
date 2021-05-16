@@ -51,7 +51,7 @@ module.exports = {
     const { Op } = Sequelize;
     return await queryInterface.bulkDelete('Users', {
       email:{
-        [Op.in]: ['qwertyb@qwertyb.qwertyb', 'asdfghb@asdfghb.asdfghb', 'qwertyc@qwertyc.qwertyc', 'asdfghc@asdfghc.asdfghc'] },
+        [Op.in]: ['qwertyb@qwertyb.qwertyb', 'asdfghb@asdfghb.asdfghb', 'qwertyc@qwertyc.qwertyc', 'asdfghc@asdfghc.asdfghc', 'qwertym@qwertym.qwertym'] },
     }, {});
   },
 };

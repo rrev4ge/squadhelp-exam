@@ -12,6 +12,7 @@ import updateContestReducer from './updateContestReducer';
 import chatReducer from './chatReducer';
 import userProfileReducer from './userProfileReducer';
 import eventsReducer from './eventsReducer';
+import offerReducer from './offerReduser';
 
 
 
@@ -29,6 +30,7 @@ const rootReducer=combineReducers({
    chatStore: chatReducer,
    userProfile: userProfileReducer,
    eventsStore: eventsReducer,
+   offersList: offerReducer,
 });
 
 export default rootReducer;

@@ -11,7 +11,7 @@ import {
     getContestByIdSaga,
     downloadContestFileSaga
 } from './contestsSagas'
-import {changeMarkSaga, setOfferStatusSaga, addOfferSaga} from './offerSagas';
+import {changeMarkSaga, setOfferStatusSaga, addOfferSaga, getOffersSaga, moderateOfferSaga} from './offerSagas';
 import {
     previewSaga,
     getDialog,
@@ -60,6 +60,9 @@ function* rootSaga() {
     yield takeLatest(ACTION.GET_EVENTS_ACTION, getEventsSagas);
     yield  takeLatest(ACTION.AUTH_ACTION_FORGOT_PASS_TOKEN, forgotPassTokenSaga);
     yield  takeLatest(ACTION.AUTH_ACTION_FORGOT_PASS, forgotPassSaga);
+    yield  takeLatest(ACTION.GET_OFFERS_ACTION,getOffersSaga);
+    yield  takeLatest(ACTION.MODERATE_OFFER_ACTION,moderateOfferSaga);
+
 }
 
 export default rootSaga;
