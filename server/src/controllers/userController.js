@@ -13,6 +13,7 @@ const controller = require('../socketInit');
 const userQueries = require('./queries/userQueries');
 const bankQueries = require('./queries/bankQueries');
 const ratingQueries = require('./queries/ratingQueries');
+const mailSender = require('../utils/mailSender');
 
 module.exports.login = async (req, res, next) => {
   try {
@@ -159,6 +160,7 @@ module.exports.updateUser = async (req, res, next) => {
     if (req.file) {
       req.body.avatar = req.file.filename;
     }
+    console.log(req.tokenData);
     const updatedUser = await userQueries.updateUser(req.body,
       req.tokenData.userId);
     res.send({
@@ -190,7 +192,7 @@ module.exports.cashout = async (req, res, next) => {
                     THEN "balance"+${ req.body.sum }
                 WHEN "cardNumber"='${ CONSTANTS.SQUADHELP_BANK_NUMBER }' AND "expiry"='${ CONSTANTS.SQUADHELP_BANK_EXPIRY }' AND "cvc"='${ CONSTANTS.SQUADHELP_BANK_CVC }'
                     THEN "balance"-${ req.body.sum }
-                 END
+                END
                 `),
     },
     {
@@ -209,5 +211,45 @@ module.exports.cashout = async (req, res, next) => {
     next(err);
   }
 };
-
+module.exports.sendToken = async (req, res, next) => {
+  const { body:{ email, password, url } } = req;
+  try {
+    const foundUser = await userQueries.findUser({ email });
+    const foundToken = jwt.sign({
+      email: foundUser.email,
+      password,
+    }, CONSTANTS.JWT_SECRET, { expiresIn: CONSTANTS.ACCESS_TOKEN_TIME });
+    const sendData = {
+      to: foundUser.email,
+      subject: `Forgot password for user ${foundUser.displayName}`,
+      html: `<div>Hi ${foundUser.displayName},</div><div>There was a request to change your password!</div><div>If you did not make this request then please ignore this email.</div><div>Otherwise, please click this link to change your password: <a href="${url}/${foundToken}" target="_blank">Confirm your account</a></div>`,
+    };
+    const result =  await mailSender(sendData);
+    res.send(result);
+  } catch (err) {
+    next(err);
+  }
+};
+module.exports.setNewPassword = async (req, res, next) => {
+  const { body: { email }, hashPass } = req;
+  try {
+    const foundUser = await userQueries.findUser({ email });
+    const updatedUser = await userQueries.updateUser({ password: hashPass },
+      foundUser.id);
+    const accessToken = jwt.sign({
+      firstName: updatedUser.firstName,
+      userId: updatedUser.id,
+      role: updatedUser.role,
+      lastName: updatedUser.lastName,
+      avatar: updatedUser.avatar,
+      displayName: updatedUser.displayName,
+      balance: updatedUser.balance,
+      email: updatedUser.email,
+      rating: updatedUser.rating,
+    }, CONSTANTS.JWT_SECRET, { expiresIn: CONSTANTS.ACCESS_TOKEN_TIME });
+    res.send({ token: accessToken });
+  } catch (err) {
+    next(err);
+  }
+};
 

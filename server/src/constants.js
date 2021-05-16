@@ -35,4 +35,14 @@ module.exports = {
     DIR_PATH: '../../logs/',
     ERRORS: 'errors_log.json',
   },
+  SERVICE_EMAIL_ACCOUNT: {
+    host: 'smtp.ethereal.email',
+    port: 587,
+    secure: false,
+    // service: 'gmail',
+    auth: {
+      user:'user',
+      pass: 'pass',
+    },
+  },
 };

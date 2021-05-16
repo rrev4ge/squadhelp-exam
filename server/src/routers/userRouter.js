@@ -22,6 +22,19 @@ userRouter.post(
   userController.login,
 );
 
+userRouter.post(
+  '/forgotToken',
+  validators.validateForgotPassToken,
+  userController.sendToken,
+);
+
+userRouter.post(
+  '/forgotData',
+  checkToken.checkPassToken,
+  hashPass,
+  userController.setNewPassword,
+);
+
 userRouter.patch(
   '/update',
   checkToken.checkToken,

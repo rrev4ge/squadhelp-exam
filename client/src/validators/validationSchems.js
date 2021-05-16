@@ -68,5 +68,10 @@ export default {
         startTime: yup.date().default(() => new Date()),
         estimatedTime: yup.date().min(yup.ref('startTime'),'estimated time should be greater now time').required('required'),
         alertTime: yup.date().test('test-alertName','Alert time should be less them estimated time', function(value) { return moment(value).diff(moment())>0 && moment(value).diff(this.parent.estimatedTime)<0}).required('required')
-    })
+    }),
+    ForgotPasswordSchem: yup.object().shape({
+        email: yup.string().email('check email').required('required'),
+        newPassword: yup.string().test('test-password','min 6 symbols',value => (value && value.trim().length>=6)).required('required'),
+        confirmPassword: yup.string().required('confirm password is required').oneOf([yup.ref('newPassword')],'confirmation pass must match new password'),
+    }),
 }

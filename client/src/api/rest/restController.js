@@ -4,6 +4,8 @@ import { loadState, saveState } from './../localStorage';
 // User Api
 export const registerRequest = (data) => http.post('/users/registration', data);
 export const loginRequest = (data) => http.post('/users/login', data);
+export const forgotPassTokenRequest = (data) => http.post('/users/forgotToken', data);
+export const forgotPassRequest = (data) => http.post('/users/forgotData', data);
 export const getUser = () => http.get('/users/');
 export const updateUser = (data) => http.patch('/users/update', data);
 export const changeMark = (data) => http.post('/users/changeMark', data);

@@ -38,3 +38,16 @@ module.exports.checkToken = async (req, res, next) => {
     next(new TokenError());
   }
 };
+
+module.exports.checkPassToken = async (req, res, next) => {
+  const accessToken = req.body.token;
+  if (!accessToken) {
+    return next(new TokenError('need token'));
+  }
+  try {
+    req.body = jwt.verify(accessToken, CONSTANTS.JWT_SECRET);
+    next();
+  } catch (err) {
+    next(new TokenError());
+  }
+};
