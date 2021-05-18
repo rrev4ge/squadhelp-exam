@@ -4,7 +4,7 @@ FROM "Users" AS u
 JOIN "Contests" AS c ON c."userId" = u."id"
 WHERE 
 	"role" = 'customer' AND
-	c."createdAt" BETWEEN '%-12-25T00:00:00' AND '%-01-14T23:59:59'
+	c."createdAt" BETWEEN '2020-12-25T00:00:00' AND '2021-01-14T23:59:59'
 GROUP BY u."id";
 
 UPDATE "Users" AS u
