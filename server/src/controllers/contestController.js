@@ -278,7 +278,6 @@ module.exports.getContests = (req, res, next) => {
 
 module.exports.getOffers = async (req, res, next) => {
   const { query: { offset, limit, offerStatus } } = req;
-  console.log(req.query);
   try {
     const offers = await db.Offer.findAll({
       where: {
@@ -297,7 +296,6 @@ module.exports.getOffers = async (req, res, next) => {
     if (offers.length === 0) {
       haveMore = false;
     }
-    console.log(`offers: ${offers.length}\nhaveMore: ${haveMore}`);
     res.send({ offers, haveMore });
   }
   catch (err) {
@@ -309,7 +307,6 @@ module.exports.moderateOffer = async (req, res, next) => {
   const { query: { id, offerStatus } } = req;
   try {
     const foundOffer = await db.Offer.findByPk(id, { attributes: { exclude: ['createdAt', 'updatedAt'] } });
-    console.log('foundOffer :>> ', foundOffer);
     const data = {
       id: foundOffer.dataValues.id,
       userId: foundOffer.dataValues.userId,
@@ -318,10 +315,9 @@ module.exports.moderateOffer = async (req, res, next) => {
       fileName: foundOffer.dataValues.fileName,
       originalFileName: foundOffer.dataValues.originalFileName,
       status: offerStatus,
-    }
+    };
     if (foundOffer) {
       const updatedOffer = await foundOffer.update(data, { attributes: { exclude: ['createdAt', 'updatedAt'] } });
-      console.log('updatedOffer :>> ', updatedOffer);
       return res.send(updatedOffer);
     }
     res.send('The task not found');

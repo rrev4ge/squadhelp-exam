@@ -38,7 +38,6 @@ const ModeratorOfferBox = (props) => {
 
 
     const resolveOffer = () => {
-        console.log(props.data.id);
         confirmAlert({
             title: 'confirm',
             message: 'Are u sure?',

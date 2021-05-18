@@ -66,7 +66,6 @@ export function* moderateOfferSaga(action) {
     yield put(moderateOfferRequest());
     try {
         const {data} = yield restController.moderateOffer(action.data);
-        console.log(data);
         yield put(moderateOfferSuccess(data));
     } catch (error) {
         yield put(moderateOfferError(error.response));
