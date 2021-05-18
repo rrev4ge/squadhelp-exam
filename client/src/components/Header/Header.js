@@ -100,7 +100,7 @@ class Header extends React.Component{
                                     <span>CONTESTS</span><img src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
                                                               alt='menu'/>
                                     <ul>
-                                        <li><a href="/">HOW IT WORKS</a></li>
+                                        <li><a target="_blank" href={process.env.PUBLIC_URL + "/staticPages/HowItWorksPage.html"}>HOW IT WORKS</a></li>
                                         <li><a href="/">PRICING</a></li>
                                         <li><a href="/">AGENCY SERVICE</a></li>
                                         <li><a href="/">ACTIVE CONTESTS</a></li>
