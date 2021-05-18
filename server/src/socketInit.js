@@ -9,9 +9,9 @@ let chatController;
 module.exports.createConnection = (httpServer) => {
   const io = socketio.listen(httpServer);
   notificationController = new NotificationController();
-  notificationController.connect('/notifications', io);
+  notificationController.connect('/api/notifications', io);
   chatController = new ChatController();
-  chatController.connect('/chat', io);
+  chatController.connect('/api/chat', io);
 };
 
 module.exports.getChatController = () => {
